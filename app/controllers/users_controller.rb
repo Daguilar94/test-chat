@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # protect_from_forgery with: :null_session
 
   def index
-    users = User.all
+    users = User.where('room_id = ?', 1)
     render json: users, status: 200
   end
 

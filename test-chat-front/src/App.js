@@ -14,6 +14,17 @@ class App extends Component {
       nickNameError: [],
       apiCallError: []
     }
+
+    axios.get("/rooms/1/users")
+    .then(response => {
+      console.log(response.data);
+      this.setState({
+        users: response.data
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 
   addUser(e) {
@@ -34,7 +45,9 @@ class App extends Component {
         })
       } else {
         self.setState({
-          nickNameError: []
+          nickName: '',
+          nickNameError: [],
+          users: self.state.users.concat(response.data)
         })
       }
     })
@@ -65,7 +78,7 @@ class App extends Component {
             <form className="text-center">
               <FormGroup controlId="formBasicText" validationState={this.getValidationState()}>
                 <ControlLabel>Enter an username</ControlLabel>
-                <FormControl type="text" value={this.state.value} placeholder="Enter text" onChange={this.handleChange}/>
+                <FormControl type="text" value={this.state.nickName} placeholder="Enter text" onChange={this.handleChange}/>
                 <p className="error">{this.state.apiCallError[0]}</p>
                 <p className="error">{this.state.nickNameError[0]}</p>
                 <FormControl.Feedback />
@@ -75,6 +88,9 @@ class App extends Component {
             </form>
           </Col>
         </Row>
+        {this.state.users.map(user =>
+          <p key={user.id}>{user.nickname}</p>
+        )}
       </Grid>
     )
   }
