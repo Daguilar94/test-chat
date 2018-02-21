@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
 
   def index
-    messages = Message.includes(:user).where('room_id = ?', 1).order(created_at: :desc)
-    render json: messages, status: 200
+    @messages = Message.includes(:user).where('room_id = ?', 1).order(created_at: :asc)
+    render json: @messages, status: 200
   end
 
   def create
@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     if message.save
       render json: message, status: 200
     else
-      render json: { errors: message.errors }, status: 422
+      render json: { errors: message.errors.full_messages }, status: 200
     end
   end
 

@@ -1,3 +1,12 @@
 .error {
   color: #ff0000;
 }
+
+.login-container {
+  height: 100vh;
+  padding-top: 10%;
+}
+
+.login-container h1 {
+  font-size: 4em;
+}

@@ -1,0 +1,8 @@
+.message-group {
+  height: 100%;
+}
+
+.message-container {
+  height: 80%;
+  overflow: auto;
+}

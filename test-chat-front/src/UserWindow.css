@@ -1,0 +1,11 @@
+.user-container {
+  height: 90%;
+  overflow: auto;
+  margin-left: 1.2em;
+  margin-top: 1.2em;
+}
+
+.user-container {
+  font-size: 1.2em;
+  color: #677877;
+}

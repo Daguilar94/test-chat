@@ -1,0 +1,11 @@
+.users-list-container {
+  height: 90vh;
+  border-radius: 5px;
+  /* border-color: rgba(182,212,212,0.3); */
+  border-color: #000;
+  border-width: 2px;
+}
+
+.messages-group-container {
+  height: 90vh;
+}

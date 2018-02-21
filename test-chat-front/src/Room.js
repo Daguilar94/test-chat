@@ -1,53 +1,33 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import MessageWindow from './MessageWindow.js';
+import UserWindow from './UserWindow.js';
+import {Grid, Row, Col} from 'react-bootstrap';
+import './Room.css'
+import './index.css'
 
 class Room extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+
     this.state = {
-      users: [],
-      messages: []
+      currentUser: this.props.params.id
     }
-
-    axios.get("/rooms/1/users")
-    .then(response => {
-      console.log(response.data);
-      this.setState({
-        users: response.data
-      })
-    })
-    .catch(error => {
-      console.log(error);
-    })
-
-    axios.get("/rooms/1/messages")
-    .then(response => {
-      console.log(response.data);
-      this.setState({
-        messages: response.data
-      })
-    })
-    .catch(error => {
-      console.log(error);
-    })
-
-
   }
 
   render() {
     return(
-      <div>
-        {/* {this.state.users.map(user =>
-          <p key={user.id}>{user.nickname}</p>
-        )} */}
-
-        {this.state.messages.map(message =>
-          <div>
-          <p key={message.id}>{message.user.nickname}</p>
-          <p>{message.content}</p>
-          <br/>
-          </div>
-        )}
+      <div className="container-fluid">
+        <Grid>
+          <Row className="show-grid">
+            <Col sm={2} className="hidden-xs text-center users-list-container margin-1-2em-0">
+              <h2><strong>Members</strong></h2>
+              <UserWindow currentUser={this.state.currentUser}/>
+            </Col>
+            <Col sm={10} xs={12} className='messages-group-container margin-1-2em-0'>
+              <MessageWindow currentUser={this.state.currentUser}/>
+            </Col>
+          </Row>
+        </Grid>
       </div>
     )
   }

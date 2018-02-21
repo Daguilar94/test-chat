@@ -1,0 +1,26 @@
+.message {
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px #eee;
+  border-color: #555;
+  margin: 1em 0;
+}
+
+.message span {
+  font-size: 1.2em;
+}
+
+.message p {
+  margin-top: 0.2em;
+  font-size: 1em;
+}
+
+.message--others {
+  margin-right: 1.2em;
+  background-color: #b6d4d4;
+}
+
+.message--own {
+  margin-left: 1.2em;
+  background-color: #7dbdbd;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock, Grid, Row, Col} from 'react-bootstrap';
 
 class Login extends Component {
@@ -36,6 +37,7 @@ class Login extends Component {
           nickName: '',
           nickNameError: []
         })
+        browserHistory.push('/chat-room/' + response.data.id)
       }
     })
     .catch(function (error) {
@@ -59,23 +61,26 @@ class Login extends Component {
 
   render() {
     return (
-      <Grid>
-        <Row className="show-grid">
-          <Col xs={12} sm={6} smOffset={3}>
-            <form className="text-center">
-              <FormGroup controlId="formBasicText" validationState={this.getValidationState()}>
-                <ControlLabel>Enter an username</ControlLabel>
-                <FormControl type="text" value={this.state.nickName} placeholder="Enter text" onChange={this.handleChange}/>
-                <p className="error">{this.state.apiCallError[0]}</p>
-                <p className="error">{this.state.nickNameError[0]}</p>
-                <FormControl.Feedback />
-                <HelpBlock>Better if it has more than 5 characters</HelpBlock>
-              </FormGroup>
-              <Button type="submit" onClick={this.addUser}>Submit</Button>
-            </form>
-          </Col>
-        </Row>
-      </Grid>
+      <div className="login-container">
+        <Grid>
+          <Row className="show-grid">
+            <Col xs={12} sm={6} smOffset={3}>
+              <form className="text-center">
+                <h1>Welcome to the Chat</h1>
+                <FormGroup controlId="formBasicText" validationState={this.getValidationState()}>
+                  <ControlLabel>Enter an username</ControlLabel>
+                  <FormControl type="text" value={this.state.nickName} placeholder="Enter text" onChange={this.handleChange}/>
+                  <p className="error">{this.state.apiCallError[0]}</p>
+                  <p className="error">{this.state.nickNameError[0]}</p>
+                  <FormControl.Feedback />
+                  <HelpBlock>Better if it has more than 5 characters</HelpBlock>
+                </FormGroup>
+                <Button type="submit" onClick={this.addUser}>Submit</Button>
+              </form>
+            </Col>
+          </Row>
+        </Grid>
+      </div>
     )
   }
 }
